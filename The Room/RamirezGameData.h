@@ -1,6 +1,13 @@
-//
-// Created by Jozemite Apps on 8/3/17.
-//
+/*
+ * The Room - Text Based Adventure Game
+ * By: Jose Adan Ramirez (Jozemite Apps 2017)
+ * Created on: 8/3/17
+ *
+ * The room is a text based adventure game that requires the user to
+ * enter a series of command to guide themselves around and pass
+ * the game.
+ *
+ */
 
 #ifndef THE_ROOM_RAMIREZGAMEDATA_H
 #define THE_ROOM_RAMIREZGAMEDATA_H
@@ -63,6 +70,9 @@ typedef struct object {
 
     // For objects that don't require items to activate
     unsigned int examineRequired;
+
+    // What prints if an item was used on the object
+    const char *usedItemDescription;
 
 } object;
 

@@ -1,3 +1,16 @@
+/*
+ * The Room - Text Based Adventure Game
+ * By: Jose Adan Ramirez (Jozemite Apps 2017)
+ * Created on: 8/3/17
+ *
+ * The room is a text based adventure game that requires the user to
+ * enter a series of command to guide themselves around and pass
+ * the game.
+ *
+ * There is a game guide located at the end of the file.
+ *
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -98,3 +111,18 @@ static int parseAndExecute(invItem *backpack) {
 
     return 1;
 }
+
+
+
+
+/* -----Game Guide -----
+ *
+ * -Part 1: Your Apartment-
+ * The game starts in the living room, you must go east to the bathroom and
+ * examine the toilet. You will find wire cutters. Go west to the living room
+ * and go north to the kitchen. Examine the microwave to use the wire cutters
+ * on it. You will find a padlock key inside of it. Go south to the living room
+ * and go back to the bathroom. Examine the giant hole to use the padlock key
+ * and escape your apartment.
+ *
+ */

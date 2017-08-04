@@ -1,6 +1,13 @@
-//
-// Created by Jozemite Apps on 8/3/17.
-//
+/*
+ * The Room - Text Based Adventure Game
+ * By: Jose Adan Ramirez (Jozemite Apps 2017)
+ * Created on: 8/3/17
+ *
+ * The room is a text based adventure game that requires the user to
+ * enter a series of command to guide themselves around and pass
+ * the game.
+ *
+ */
 
 #include <stdio.h>
 #include <string.h>
@@ -27,39 +34,27 @@ item items[] = {
 };
 
 
-// An object is anything that the user can examine
-//    // What prints when they examine the object for the first time
-//    const char *description;
-//    // What prints after the object has been used or examined
-//    const char *usedDescription;
-//    const char *name;
-//    // References where the object is located
-//    struct location *location;
-//    // Determines whether the object has been used so to switch description
-//    unsigned int didUse;
-//    // To know what item will unlock or activate the object
-//    struct item *itemRequired;
-//    // To know what item to reward the user if needed
-//    struct item *itemRewarded;
-//    // For objects that don't require items to activate
-//    unsigned int examineRequired;
-
+// description, used description, name, location, did use, item required,
+// item rewarded, and examine required, used item description,
 object objects[] = {
         {"The microwave seems to be tightly shut with wires.\nMaybe we could cut it with a tool.",
-                                                                 "There is nothing unique about the microwave anymore.",
-                "microwave", kitchen,  0, wireCutters, padLockKey, 0},
+                "There is nothing unique about the microwave anymore.",
+                "microwave", kitchen,  0, wireCutters, padLockKey, 0,
+                "You used the wire cutters on the microwave to remove the wires.\nAs you open it, you"
+                        "find a key inside of it. Looks like\nthe smell was from burnt metal. You hope it"
+                        "still works."},
 
         {"There seems to be something clogging the toilet...\nYou reach your hand in there (gross!) only to feel "
                  "some kind of sharp tool.\nYou found a pair of wire cutters. (Whoosh!)",
-                                                                 "The toilet is no longer clogged.",
-                "toilet", bathroom, 0, NULL, wireCutters, 1},
+                "The toilet is no longer clogged.",
+                "toilet", bathroom, 0, NULL, wireCutters, 1, ""},
 
         {"The giant hole in the wall seems to be shut with a bunch of chains.\nUpon closer inspection, you notice "
                  "that there is a padlock that requires a key.", "What could've made this hole in the wall?",
-                "giant hole", bathroom, 0, padLockKey, NULL, 0},
+                "giant hole", bathroom, 0, padLockKey, NULL, 0, ""},
 
         {"The front door is heavily locked by a bunch of chains. It doesn't seem\nlike you can do anything about it.",
-                "", "front door", livingRoom, 0, NULL, NULL, 0}
+                "", "front door", livingRoom, 0, NULL, NULL, 0, ""}
 };
 
 
@@ -199,19 +194,17 @@ invItem *executeExamine(const char *noun, invItem *backpack) {
                 objects[i].didUse ? printf("%s\n", objects[i].usedDescription)
                                   : printf("%s\n", objects[i].description);
 
-//                // Called if the user has the right item at the right place.
-//                if (objects[i].itemRequired != NULL
-//                    || objects[i].examineRequired) {
-//                    //
-//                    // Set the use to on and remove the item used
-//                    objects[i].didUse = 1;
-//
-//                }
+                // Called if the user has the right item at the right place.
+                if (objects[i].itemRequired != NULL) {
+                    //
+                    // Set the use to on and remove the item used
+                    objects[i].didUse = 1;
 
-                // Called if the objects doesn't need an item and just examination
-                // For example, observing the toilet at the beginning gives you
-                // wire cutters and that's it.
-                if (objects[i].itemRewarded != NULL
+
+                    // Called if the objects doesn't need an item and just examination
+                    // For example, observing the toilet at the beginning gives you
+                    // wire cutters and that's it.
+                } else if (objects[i].itemRewarded != NULL
                     && objects[i].examineRequired
                     && objects[i].didUse == 0) {
                     objects[i].didUse = 1;
