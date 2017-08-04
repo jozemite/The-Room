@@ -22,7 +22,6 @@ typedef struct location {
     unsigned int tag;
 
     // Displays this when the user looks around
-    // Write it as if it will start with "You are in..."
     const char *description;
 
     // Used to reference if the user enters the location name
@@ -98,6 +97,11 @@ extern object objects[];
 #define livingRoom (locations + 0)
 #define kitchen (locations + 1)
 #define bathroom (locations + 2)
+#define caveEntrance (locations + 3)
+#define caveEntranceEastRoom (locations + 4)
+#define caveEntranceWestRoom (locations + 5)
+#define caveEastDarkRoom (locations + 6)
+#define caveLitRoom (locations + 7)
 
 #define wireCutters (items + 0)
 #define padLockKey (items + 1)

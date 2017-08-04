@@ -18,6 +18,7 @@
 
 // tag, description, name, location to the north east south and west,
 location locations[] = {
+        // Your apartment locations
         {0, "your living room. You can't leave through the front door.", "living room",
                 kitchen, bathroom, NULL, NULL},
 
@@ -27,7 +28,19 @@ location locations[] = {
         {2, "the bathroom. There's a toilet and a giant hole on the wall.", "bathroom",
                 NULL, NULL, NULL, livingRoom},
 
-        {3, ""}
+        // The cave location
+        {3, "dimly lit cave. There seems to be something written on a wall.", "cave entrance",
+                NULL, caveEntranceEastRoom, NULL, caveEntranceWestRoom},
+
+        {4, "dimly lit cave.", "cave entrance east room", NULL, caveEastDarkRoom, caveLitRoom, caveEntrance},
+
+        {5, "dimly lit cave. ", "cave entrance west room", NULL, caveEntrance, NULL, NULL},
+
+        {6, "dark room. You can't see anything, not even what you step on.", "cave dark room",
+                NULL, NULL, NULL, caveEntranceEastRoom},
+
+        {7, "cave room where there seems to be a lot of light coming\nfrom the corners of a wall.", "cave lit room",
+                    caveEntranceEastRoom, NULL, NULL, NULL}
 };
 
 
@@ -54,8 +67,11 @@ object objects[] = {
                 "toilet", bathroom, 0, NULL, wireCutters, "", 0},
 
         {"The giant hole in the wall seems to be shut with a bunch of chains.\nUpon closer inspection, you notice "
-                 "that there is a padlock that requires a key.", "What could've made this hole in the wall?",
-                "giant hole", bathroom, 0, padLockKey, NULL, "", 0},
+                 "that there is a padlock that requires\na key.", "What could've made this hole in the wall?",
+                "giant hole", bathroom, 0, padLockKey, NULL,
+                "\nYou used the key on the padlock, which allowed you to remove the chains.\n\nYou are "
+                        "hesitant to step in... but do you have any other choice? You\nslowly walk through the "
+                        "hole only to find yourself in a cave.\n", 3},
 
         {"The front door is heavily locked by a bunch of chains. It doesn't seem\nlike you can do anything about it.",
                 "", "front door", livingRoom, 0, NULL, NULL, "", 0}
@@ -205,6 +221,12 @@ invItem *executeExamine(const char *noun, invItem *backpack) {
                     if (isItemInPossession(backpack, objects[i].itemRequired->name)) {
                         printf("%s", objects[i].useItemDescription);
                         objects[i].didUse = 1;
+
+                        // If the object can move them, then change the user's location
+                        if (objects[i].name == "giant hole") {
+                            playerLocation = objects[i].moveToLocation;
+                            executeLook("around");
+                        }
 
                         // Only add to the inventory if there is an item to add
                         if (objects[i].itemRewarded != NULL)
