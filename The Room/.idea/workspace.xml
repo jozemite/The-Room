@@ -30,8 +30,8 @@
           <file leaf-file-name="RamirezGameData.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/RamirezGameData.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="561">
-                  <caret line="76" column="9" lean-forward="true" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+                <state relative-caret-position="305">
+                  <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
                   <folding />
                 </state>
               </provider>
@@ -40,11 +40,13 @@
           <file leaf-file-name="RamirezGameData.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/RamirezGameData.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="513">
-                  <caret line="197" column="51" lean-forward="false" selection-start-line="197" selection-start-column="50" selection-end-line="197" selection-end-column="51" />
+                <state relative-caret-position="416">
+                  <caret line="29" column="15" lean-forward="true" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
                   <folding>
                     <element signature="e#269#287#0" expanded="true" />
-                    <element signature="e#3289#7053#0" expanded="false" />
+                    <element signature="e#2502#2904#0" expanded="false" />
+                    <element signature="e#2907#3445#0" expanded="false" />
+                    <element signature="e#3449#7213#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -57,8 +59,8 @@
           <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="867">
-                  <caret line="127" column="0" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+                <state relative-caret-position="702">
+                  <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
                   <folding>
                     <element signature="e#329#347#0" expanded="true" />
                   </folding>
@@ -78,8 +80,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/RamirezGameData.h" />
         <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/RamirezGameData.h" />
         <option value="$PROJECT_DIR$/RamirezGameData.c" />
       </list>
     </option>
@@ -170,12 +172,12 @@
       <workItem from="1501740416187" duration="20921000" />
       <workItem from="1501784576518" duration="52000" />
       <workItem from="1501812392221" duration="119000" />
-      <workItem from="1501850132150" duration="4148000" />
+      <workItem from="1501850132150" duration="6440000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29872000" />
+    <option name="totallyTimeSpent" value="32164000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -210,7 +212,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -229,7 +231,9 @@
           <caret line="202" column="5" lean-forward="false" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
           <folding>
             <element signature="e#269#287#0" expanded="true" />
-            <element signature="e#3289#7053#0" expanded="false" />
+            <element signature="e#2502#2904#0" expanded="false" />
+            <element signature="e#2907#3445#0" expanded="false" />
+            <element signature="e#3449#7213#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -258,7 +262,9 @@
           <caret line="202" column="5" lean-forward="false" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
           <folding>
             <element signature="e#269#287#0" expanded="true" />
-            <element signature="e#3289#7053#0" expanded="false" />
+            <element signature="e#2502#2904#0" expanded="false" />
+            <element signature="e#2907#3445#0" expanded="false" />
+            <element signature="e#3449#7213#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -287,7 +293,9 @@
           <caret line="202" column="5" lean-forward="true" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
           <folding>
             <element signature="e#269#287#0" expanded="true" />
-            <element signature="e#3289#7053#0" expanded="false" />
+            <element signature="e#2502#2904#0" expanded="false" />
+            <element signature="e#2907#3445#0" expanded="false" />
+            <element signature="e#3449#7213#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -362,8 +370,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="127" column="0" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+        <state relative-caret-position="702">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
             <element signature="e#329#347#0" expanded="true" />
           </folding>
@@ -372,19 +380,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RamirezGameData.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="76" column="9" lean-forward="true" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+        <state relative-caret-position="305">
+          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RamirezGameData.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="197" column="51" lean-forward="false" selection-start-line="197" selection-start-column="50" selection-end-line="197" selection-end-column="51" />
+        <state relative-caret-position="416">
+          <caret line="29" column="15" lean-forward="true" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
           <folding>
             <element signature="e#269#287#0" expanded="true" />
-            <element signature="e#3289#7053#0" expanded="false" />
+            <element signature="e#2502#2904#0" expanded="false" />
+            <element signature="e#2907#3445#0" expanded="false" />
+            <element signature="e#3449#7213#0" expanded="false" />
           </folding>
         </state>
       </provider>

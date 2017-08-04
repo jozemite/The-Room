@@ -16,6 +16,7 @@
 #include "RamirezGameData.h"
 
 
+// tag, description, name, location to the north east south and west,
 location locations[] = {
         {0, "your living room. You can't leave through the front door.", "living room",
                 kitchen, bathroom, NULL, NULL},
@@ -25,36 +26,39 @@ location locations[] = {
 
         {2, "the bathroom. There's a toilet and a giant hole on the wall.", "bathroom",
                 NULL, NULL, NULL, livingRoom},
+
+        {3, ""}
 };
 
 
+// Name, did use before, single use
 item items[] = {
-        {"wire cutters", 0},
-        {"padlock key",  0}
+        {"wire cutters", 0, 0},
+        {"padlock key",  0, 0}
 };
 
 
-// description, used description, name, location, did use, item required,
-// item rewarded, and examine required, used item description,
+// description, used description, name, location, did use, item required, item rewarded, use item description,
+// move to location,
 object objects[] = {
         {"The microwave seems to be tightly shut with wires.\nMaybe we could cut it with a tool.",
                 "There is nothing unique about the microwave anymore.",
-                "microwave", kitchen,  0, wireCutters, padLockKey, 0,
-                "You used the wire cutters on the microwave to remove the wires.\nAs you open it, you"
-                        "find a key inside of it. Looks like\nthe smell was from burnt metal. You hope it"
-                        "still works."},
+                "microwave", kitchen,  0, wireCutters, padLockKey,
+                "\nYou used the wire cutters on the microwave to remove the wires. As you\nopen it, you "
+                        "find a key inside of it. It looks like the smell was from\nburning metal. You hope the "
+                        "key still works... but who did this?\n", 0},
 
         {"There seems to be something clogging the toilet...\nYou reach your hand in there (gross!) only to feel "
                  "some kind of sharp tool.\nYou found a pair of wire cutters. (Whoosh!)",
                 "The toilet is no longer clogged.",
-                "toilet", bathroom, 0, NULL, wireCutters, 1, ""},
+                "toilet", bathroom, 0, NULL, wireCutters, "", 0},
 
         {"The giant hole in the wall seems to be shut with a bunch of chains.\nUpon closer inspection, you notice "
                  "that there is a padlock that requires a key.", "What could've made this hole in the wall?",
-                "giant hole", bathroom, 0, padLockKey, NULL, 0, ""},
+                "giant hole", bathroom, 0, padLockKey, NULL, "", 0},
 
         {"The front door is heavily locked by a bunch of chains. It doesn't seem\nlike you can do anything about it.",
-                "", "front door", livingRoom, 0, NULL, NULL, 0, ""}
+                "", "front door", livingRoom, 0, NULL, NULL, "", 0}
 };
 
 
@@ -194,19 +198,27 @@ invItem *executeExamine(const char *noun, invItem *backpack) {
                 objects[i].didUse ? printf("%s\n", objects[i].usedDescription)
                                   : printf("%s\n", objects[i].description);
 
-                // Called if the user has the right item at the right place.
-                if (objects[i].itemRequired != NULL) {
-                    //
-                    // Set the use to on and remove the item used
-                    objects[i].didUse = 1;
+                // First check if the object requires an item
+                if (objects[i].itemRequired != NULL && objects[i].didUse == 0) {
 
+                    //Check if the user has the item required in the inventory
+                    if (isItemInPossession(backpack, objects[i].itemRequired->name)) {
+                        printf("%s", objects[i].useItemDescription);
+                        objects[i].didUse = 1;
+
+                        // Only add to the inventory if there is an item to add
+                        if (objects[i].itemRewarded != NULL)
+                            return inventoryItemPush(backpack, *objects[i].itemRewarded);
+
+                        return backpack;
+                    }
 
                     // Called if the objects doesn't need an item and just examination
                     // For example, observing the toilet at the beginning gives you
                     // wire cutters and that's it.
-                } else if (objects[i].itemRewarded != NULL
-                    && objects[i].examineRequired
-                    && objects[i].didUse == 0) {
+                } else if (objects[i].itemRequired == NULL
+                           && objects[i].itemRewarded != NULL
+                           && objects[i].didUse == 0) {
                     objects[i].didUse = 1;
                     return inventoryItemPush(backpack, *objects[i].itemRewarded);
                 }
@@ -267,4 +279,18 @@ invItem *inventoryItemPush(invItem *backpack, item newItem) {
 // Removes items from the user's inventory
 void inventoryItemPop(invItem *backpack, item removeItem) {
 
+}
+
+
+// Checks to see if the user has the right item in the inventory
+int isItemInPossession(invItem *backpack, const char *name) {
+    invItem *item = backpack;
+
+    for (; item; item = item->nextItem) {
+        if (strcmp(item->name, name) == 0) {
+            return 1;
+        }
+    }
+
+    return 0;
 }

@@ -40,8 +40,11 @@ typedef struct location {
 typedef struct item {
     const char *name;
 
-    //checks if it was used or not to remove it
+    // Checks if it was used or not to remove it
     unsigned int didUse;
+
+    // Items that are gone after a single use
+    unsigned int singleUse;
 } item;
 
 
@@ -63,16 +66,17 @@ typedef struct object {
     unsigned int didUse;
 
     // To know what item will unlock or activate the object
+    // This is null if the object doesn't require an item to activate
     struct item *itemRequired;
 
     // To know what item to reward the user if needed
     struct item *itemRewarded;
 
-    // For objects that don't require items to activate
-    unsigned int examineRequired;
-
     // What prints if an item was used on the object
-    const char *usedItemDescription;
+    const char *useItemDescription;
+
+    // If the object is a door, move them to a new room if needed
+    unsigned int moveToLocation;
 
 } object;
 
@@ -95,18 +99,10 @@ extern object objects[];
 #define kitchen (locations + 1)
 #define bathroom (locations + 2)
 
-
 #define wireCutters (items + 0)
 #define padLockKey (items + 1)
 
-
-#define microwave (objects + 0)
-#define toilet (objects + 1)
-#define hole (objects + 2)
-
-
 #define numOfLocations (sizeof(locations) / sizeof(*locations))
-#define numOfItems (sizeof(items) / sizeof(*items))
 #define numOfObjects (sizeof(objects) / sizeof(*objects))
 
 
@@ -119,6 +115,6 @@ extern void executeInventory(invItem *backpack);
 // Manages the items the user has in his backpack/inventory
 extern invItem *inventoryItemPush(invItem *backpack, item newItem);
 extern void inventoryItemPop(invItem *backpack, item removeItem);
-
+extern int isItemInPossession(invItem *backpack, const char *name);
 
 #endif //THE_ROOM_RAMIREZGAMEDATA_H
