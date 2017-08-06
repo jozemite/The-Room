@@ -29,52 +29,82 @@ location locations[] = {
                 NULL, NULL, NULL, livingRoom},
 
         // The cave location
-        {3, "dimly lit cave. There seems to be something written on a wall.", "cave entrance",
+        {3, "a dimly lit cave. There seems to be something written on a wall.", "cave entrance",
                 NULL, caveEntranceEastRoom, NULL, caveEntranceWestRoom},
 
-        {4, "dimly lit cave.", "cave entrance east room", NULL, caveEastDarkRoom, caveLitRoom, caveEntrance},
+        {4, "a dimly lit cave.", "cave east room", NULL, caveEastDarkRoom, caveLitRoom, caveEntrance},
 
-        {5, "dimly lit cave. ", "cave entrance west room", NULL, caveEntrance, NULL, NULL},
+        {5, "a dimly lit cave. ", "cave west room", NULL, caveEntrance, NULL, NULL},
 
         {6, "dark room. You can't see anything, not even what you step on.", "cave dark room",
                 NULL, NULL, NULL, caveEntranceEastRoom},
 
-        {7, "cave room where there seems to be a lot of light coming\nfrom the corners of a wall.", "cave lit room",
-                    caveEntranceEastRoom, NULL, NULL, NULL}
+        {7, "a cave room where there seems to be a lot of light coming\nfrom the corner of a wall.", "cave lit room",
+                    caveEntranceEastRoom, NULL, NULL, NULL},
+
+        {8, "a forest where the sun shines through.", "forest", NULL, eastForest, NULL, westForest},
+
+        {9, "a forest with an abandoned car on the side of the road.", "east forest", NULL, NULL, NULL, westForest},
+
+        {10, "a forest where there is an abandoned tent.", "west forest", NULL, mainForest, NULL, NULL}
 };
 
 
-// Name, did use before, single use
+// Name
 item items[] = {
-        {"wire cutters", 0, 0},
-        {"padlock key",  0, 0}
+        {"wire cutters"},
+        {"padlock key"},
+        {"snake coin"},
+        {"car keys"}
 };
 
 
 // description, used description, name, location, did use, item required, item rewarded, use item description,
-// move to location,
+// can move to new location, move to location,
 object objects[] = {
         {"The microwave seems to be tightly shut with wires.\nMaybe we could cut it with a tool.",
                 "There is nothing unique about the microwave anymore.",
                 "microwave", kitchen,  0, wireCutters, padLockKey,
                 "\nYou used the wire cutters on the microwave to remove the wires. As you\nopen it, you "
                         "find a key inside of it. It looks like the smell was from\nburning metal. You hope the "
-                        "key still works... but who did this?\n", 0},
+                        "key still works... but who did this?\n", 0, 0},
 
         {"There seems to be something clogging the toilet...\nYou reach your hand in there (gross!) only to feel "
                  "some kind of sharp tool.\nYou found a pair of wire cutters. (Whoosh!)",
                 "The toilet is no longer clogged.",
-                "toilet", bathroom, 0, NULL, wireCutters, "", 0},
+                "toilet", bathroom, 0, NULL, wireCutters, "", 0, 0},
 
         {"The giant hole in the wall seems to be shut with a bunch of chains.\nUpon closer inspection, you notice "
-                 "that there is a padlock that requires\na key.", "What could've made this hole in the wall?",
+                 "that there is a padlock that requires\na key.", "",
                 "giant hole", bathroom, 0, padLockKey, NULL,
                 "\nYou used the key on the padlock, which allowed you to remove the chains.\n\nYou are "
                         "hesitant to step in... but do you have any other choice? You\nslowly walk through the "
-                        "hole only to find yourself in a cave.\n", 3},
+                        "hole only to find yourself in a cave.\n\n", 1, 3},
 
         {"The front door is heavily locked by a bunch of chains. It doesn't seem\nlike you can do anything about it.",
-                "", "front door", livingRoom, 0, NULL, NULL, "", 0}
+                "", "front door", livingRoom, 0, NULL, NULL, "", 0, 0},
+
+        {"There is some kind of writing on the wall.\n\n\"The formless one leads the way.\nIf only you could see it.\"",
+                "", "wall", caveEntrance, 0, NULL, NULL, "", 0, 0},
+
+        {"You put your hands on the floor and feel something small and round.\nThe more you rub your fingers on it, the "
+                 "more you feel something\nformless... almost like an engraved snake on a coin. You put it\nin your "
+                 "backpack just in case.",
+                "You put your hands on the floor but feel nothing but rocks.",
+                "floor", caveEastDarkRoom, 0, NULL, snakeCoin, "", 0, 0},
+
+        {"There is a small circular engraving on the wall's corner.", "", "wall's corner", caveLitRoom, 0, snakeCoin, NULL,
+                "\nYou put the snake coin in the engraved circular opening... you hear\nrumbling for a few seconds "
+                        "until a bright flash suddenly blinds you.\nWhen you open your eyes, you realize you are "
+                        "outside in a forest now.\n\n", 1, 8},
+
+        {"There seems to be nobody around or in the tent.\nAs you look inside, you only find a pair of car keys.\n"
+                 "You take them just in case you need them.",
+        "There is just an abandoned tent with nobody around it.", "tent", westForest, 0, 0, carKeys, 0, 0},
+
+        {"There is a car on the side of the road with the door\nopen but nobody around it.",
+        "", "car", eastForest, 0, carKeys, NULL, "\nYou hope that the car keys you found start the car...\n"
+                                                         "As you turn them, the car turns on and you start driving home.\n\n", 0, 0}
 };
 
 
@@ -88,6 +118,7 @@ void executeLook(const char *noun) {
         printf("I don't understand what you want to see.\n");
     }
 }
+
 
 
 void printSurroundingLocations(location currentLocation) {
@@ -214,6 +245,7 @@ invItem *executeExamine(const char *noun, invItem *backpack) {
                 objects[i].didUse ? printf("%s\n", objects[i].usedDescription)
                                   : printf("%s\n", objects[i].description);
 
+
                 // First check if the object requires an item
                 if (objects[i].itemRequired != NULL && objects[i].didUse == 0) {
 
@@ -223,9 +255,11 @@ invItem *executeExamine(const char *noun, invItem *backpack) {
                         objects[i].didUse = 1;
 
                         // If the object can move them, then change the user's location
-                        if (objects[i].name == "giant hole") {
+                        if (objects[i].canMoveToLocation == 1) {
                             playerLocation = objects[i].moveToLocation;
                             executeLook("around");
+                        } else if (strcmp(objects[i].name, "car") == 0) {
+                            return NULL;
                         }
 
                         // Only add to the inventory if there is an item to add
@@ -246,7 +280,7 @@ invItem *executeExamine(const char *noun, invItem *backpack) {
                 }
 
             } else {
-                printf("There is no %s to examine in here.\n", noun);
+                printf("There is nothing unique about examining '%s'.\n", noun);
             }
 
             return backpack;
@@ -287,21 +321,17 @@ invItem *inventoryItemPush(invItem *backpack, item newItem) {
         tempItem->name = newItem.name;
         tempItem->nextItem = NULL;
 
-        invItem *lastItem;
-        for (lastItem = backpack; lastItem; lastItem = lastItem->nextItem);
-        tempItem->prevItem = lastItem;
+        invItem *lastItem = backpack;
+        while (lastItem->nextItem) {
+            lastItem = lastItem->nextItem;
+        }
 
-        backpack->nextItem = tempItem;
+        lastItem->nextItem = tempItem;
     }
 
     return backpack;
 }
 
-
-// Removes items from the user's inventory
-void inventoryItemPop(invItem *backpack, item removeItem) {
-
-}
 
 
 // Checks to see if the user has the right item in the inventory

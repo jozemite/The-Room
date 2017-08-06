@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2/Programs/Final Project/The Room"
+CMAKE_SOURCE_DIR = "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2 Done/Programs/Final Project/The Room"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2/Programs/Final Project/The Room/cmake-build-debug"
+CMAKE_BINARY_DIR = "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2 Done/Programs/Final Project/The Room/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2/Programs/Final Project/The Room/cmake-build-debug/CMakeFiles" "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2/Programs/Final Project/The Room/cmake-build-debug/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2 Done/Programs/Final Project/The Room/cmake-build-debug/CMakeFiles" "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2 Done/Programs/Final Project/The Room/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2/Programs/Final Project/The Room/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2 Done/Programs/Final Project/The Room/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -123,6 +123,33 @@ The_Room/fast:
 	$(MAKE) -f CMakeFiles/The_Room.dir/build.make CMakeFiles/The_Room.dir/build
 .PHONY : The_Room/fast
 
+Ramirez.o: Ramirez.c.o
+
+.PHONY : Ramirez.o
+
+# target to build an object file
+Ramirez.c.o:
+	$(MAKE) -f CMakeFiles/The_Room.dir/build.make CMakeFiles/The_Room.dir/Ramirez.c.o
+.PHONY : Ramirez.c.o
+
+Ramirez.i: Ramirez.c.i
+
+.PHONY : Ramirez.i
+
+# target to preprocess a source file
+Ramirez.c.i:
+	$(MAKE) -f CMakeFiles/The_Room.dir/build.make CMakeFiles/The_Room.dir/Ramirez.c.i
+.PHONY : Ramirez.c.i
+
+Ramirez.s: Ramirez.c.s
+
+.PHONY : Ramirez.s
+
+# target to generate assembly for a file
+Ramirez.c.s:
+	$(MAKE) -f CMakeFiles/The_Room.dir/build.make CMakeFiles/The_Room.dir/Ramirez.c.s
+.PHONY : Ramirez.c.s
+
 RamirezGameData.o: RamirezGameData.c.o
 
 .PHONY : RamirezGameData.o
@@ -150,33 +177,6 @@ RamirezGameData.c.s:
 	$(MAKE) -f CMakeFiles/The_Room.dir/build.make CMakeFiles/The_Room.dir/RamirezGameData.c.s
 .PHONY : RamirezGameData.c.s
 
-main.o: main.c.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/The_Room.dir/build.make CMakeFiles/The_Room.dir/main.c.o
-.PHONY : main.c.o
-
-main.i: main.c.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/The_Room.dir/build.make CMakeFiles/The_Room.dir/main.c.i
-.PHONY : main.c.i
-
-main.s: main.c.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/The_Room.dir/build.make CMakeFiles/The_Room.dir/main.c.s
-.PHONY : main.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +186,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... The_Room"
+	@echo "... Ramirez.o"
+	@echo "... Ramirez.i"
+	@echo "... Ramirez.s"
 	@echo "... RamirezGameData.o"
 	@echo "... RamirezGameData.i"
 	@echo "... RamirezGameData.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 .PHONY : help
 
 

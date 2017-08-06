@@ -38,12 +38,6 @@ typedef struct location {
 
 typedef struct item {
     const char *name;
-
-    // Checks if it was used or not to remove it
-    unsigned int didUse;
-
-    // Items that are gone after a single use
-    unsigned int singleUse;
 } item;
 
 
@@ -74,6 +68,9 @@ typedef struct object {
     // What prints if an item was used on the object
     const char *useItemDescription;
 
+    // Whether this object can move the user to a new location
+    unsigned int canMoveToLocation;
+
     // If the object is a door, move them to a new room if needed
     unsigned int moveToLocation;
 
@@ -84,7 +81,6 @@ typedef struct object {
 typedef struct invItem {
     const char *name;
     struct invItem *nextItem;
-    struct invItem *prevItem;
 } invItem;
 
 
@@ -102,9 +98,14 @@ extern object objects[];
 #define caveEntranceWestRoom (locations + 5)
 #define caveEastDarkRoom (locations + 6)
 #define caveLitRoom (locations + 7)
+#define mainForest (locations + 8)
+#define eastForest (locations + 9)
+#define westForest (locations + 10)
 
 #define wireCutters (items + 0)
 #define padLockKey (items + 1)
+#define snakeCoin (items + 2)
+#define carKeys (items + 3)
 
 #define numOfLocations (sizeof(locations) / sizeof(*locations))
 #define numOfObjects (sizeof(objects) / sizeof(*objects))
@@ -118,7 +119,7 @@ extern void executeInventory(invItem *backpack);
 
 // Manages the items the user has in his backpack/inventory
 extern invItem *inventoryItemPush(invItem *backpack, item newItem);
-extern void inventoryItemPop(invItem *backpack, item removeItem);
 extern int isItemInPossession(invItem *backpack, const char *name);
+
 
 #endif //THE_ROOM_RAMIREZGAMEDATA_H

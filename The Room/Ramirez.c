@@ -25,6 +25,7 @@ static char userCommand[100];
 void printIntroduction();
 static int getInput();
 static int parseAndExecute(invItem *backpack);
+void printEnding();
 
 
 int main() {
@@ -33,7 +34,6 @@ int main() {
     invItem *backpack = malloc(sizeof(invItem));
     backpack->name = "";
     backpack->nextItem = NULL;
-    backpack->prevItem = NULL;
 
     printIntroduction();
     executeLook("around");
@@ -98,6 +98,12 @@ static int parseAndExecute(invItem *backpack) {
         } else if (strcmp(verb, "examine") == 0 || strcmp(verb, "Examine") == 0) {
             backpack = executeExamine(noun, backpack);
 
+            // End of the game
+            if (backpack == NULL) {
+                printEnding();
+                return 0;
+            }
+
         } else if (strcmp(verb, "inventory") == 0 || strcmp(verb, "Inventory") == 0) {
             executeInventory(backpack);
 
@@ -114,15 +120,36 @@ static int parseAndExecute(invItem *backpack) {
 
 
 
+void printEnding() {
+    printf("After driving for a while, you finally reach your home. As you go\nand prepare yourself to see what could "
+                   "lie on the other side of\nthe door, you suddenly see a big flash as soon as you open it.\nWhen you "
+                   "finally open up your eyes again, you realize you\nare no awake back in your bed...\n");
+}
+
+
+
 
 /* -----Game Guide -----
  *
- * -Part 1: Your Apartment-
- * The game starts in the living room, you must go east to the bathroom and
- * examine the toilet. You will find wire cutters. Go west to the living room
- * and go north to the kitchen. Examine the microwave to use the wire cutters
- * on it. You will find a padlock key inside of it. Go south to the living room
- * and go back to the bathroom. Examine the giant hole to use the padlock key
- * and escape your apartment.
+ * go east
+ * examine toilet
+ * go west
+ * go north
+ * examine microwave
+ * go south
+ * go east
+ * examine giant hole
+ * go east
+ * go east
+ * examine floor
+ * go west
+ * go south
+ * examine wall's corner
+ * go west
+ * examine tent
+ * go east
+ * go east
+ * examine car
  *
+ * End of the game.
  */

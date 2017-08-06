@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2/Programs/Final Project/The Room/RamirezGameData.c" "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2/Programs/Final Project/The Room/cmake-build-debug/CMakeFiles/The_Room.dir/RamirezGameData.c.o"
-  "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2/Programs/Final Project/The Room/main.c" "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2/Programs/Final Project/The Room/cmake-build-debug/CMakeFiles/The_Room.dir/main.c.o"
+  "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2 Done/Programs/Final Project/The Room/Ramirez.c" "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2 Done/Programs/Final Project/The Room/cmake-build-debug/CMakeFiles/The_Room.dir/Ramirez.c.o"
+  "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2 Done/Programs/Final Project/The Room/RamirezGameData.c" "/Users/jozemiteapps/Dropbox/Summer 2017/CS 2 Done/Programs/Final Project/The Room/cmake-build-debug/CMakeFiles/The_Room.dir/RamirezGameData.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
