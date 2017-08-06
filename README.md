@@ -19,3 +19,5 @@ If you need help passing the game, there is an Excel game guide int he repositor
 
 ##
 I might expand this game since I really enjoyed creating it, or I might make a new one later. If you're curious, I did get a grade of 100 on it.
+
+This entire project was also created on the IDE CLion.
