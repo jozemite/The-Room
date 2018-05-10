@@ -5,6 +5,11 @@ It's a really short game because I wrote it as the final project for my C progra
 So because I had a short amount of time, I didn't create it as complex as I wanted to.
 If you need help passing the game, there is an Excel game guide in the repository as well as the commands required to enter to pass the game at the bottom of the Ramirez.c file.
 
+## How to Play
+
+Execute in your terminal the following command: `gcc Ramirez.c RamirezGameData.c RamirezGameData.h`. That should create a "a.out" file in the same directory. Then just run it: `./a.out`.
+
+
 ## Available Commands
 
 **Look around**: Gives a short description of where you are, as well as what is around you.
